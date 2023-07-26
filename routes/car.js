@@ -19,10 +19,10 @@ router.delete("/:id", async (req, res) => {
 
 //  add
 router.post("/", async (req, res) => {
-  const { make, model, year, transmission } = req.body;
+  const { make, model, year, transmission, customerId } = req.body;
  
   const transmissionType = ["a", "m"];
-
+  
  
   if (
     !make ||
@@ -41,13 +41,14 @@ router.post("/", async (req, res) => {
 
   try {
     await asyncMySQL(`INSERT INTO cars 
-                        (make, model, year, transmission) 
+                        (make, model, year, transmission, customer_id ) 
                              VALUES 
-                                ("${make}", "${model}","${year}",  "${transmission}")`);
+                                ("${make}", "${model}","${year}",  "${transmission}", "${customerId}")`);
     res.send({ status: 1 });
   } catch (error) {
     res.send({ status: 0, reason: "Duplicate entry" });
     console.log(error);
+    console.log(customerId)
   }
 });
 
