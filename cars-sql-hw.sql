@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2023 at 04:15 PM
+-- Generation Time: Jul 26, 2023 at 07:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -36,18 +36,23 @@ CREATE TABLE `cars` (
   `fuel_type` varchar(12) NOT NULL,
   `drive` varchar(3) NOT NULL,
   `class` varchar(24) NOT NULL,
-  `is_sold` tinyint(1) NOT NULL
+  `is_sold` tinyint(1) NOT NULL,
+  `customer_id` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`id`, `make`, `model`, `year`, `transmission`, `fuel_type`, `drive`, `class`, `is_sold`) VALUES
-(1, 'lexus', 'rx350h', 2022, 'a', 'gas', '4wd', 'standard sport utility v', 1),
-(2, 'jaguar', 'f-type r awd convertible', 2023, 'a', 'gas', 'awd', 'two seater', 1),
-(3, 'land rover', 'defender 90', 2023, 'a', 'gas', '4wd', 'standard sport utility v', 1),
-(4, 'lexus', 'rx', 2020, 'a', 'gas', 'fwd', 'mini compact car', 0);
+INSERT INTO `cars` (`id`, `make`, `model`, `year`, `transmission`, `fuel_type`, `drive`, `class`, `is_sold`, `customer_id`) VALUES
+(1, 'lexus', 'rx350h', 2022, 'a', 'gas', '4wd', 'standard sport utility v', 1, 0),
+(2, 'jaguar', 'f-type r awd convertible', 2023, 'a', 'gas', 'awd', 'two seater', 1, 0),
+(3, 'land rover', 'defender 90', 2023, 'a', 'gas', '4wd', 'standard sport utility v', 1, 0),
+(4, 'lexus', 'rx', 2020, 'a', 'gas', 'fwd', 'mini compact car', 0, 0),
+(13, 'bmw', 'x1', 2023, 'a', '', '', '', 0, 0),
+(14, 'bmw', 'x3', 2020, 'm', '', '', '', 0, 102),
+(15, 'audi', 'a3', 2022, 'a', '', '', '', 0, 101),
+(16, 'renault', 'clio', 2019, 'm', '', '', '', 0, 101);
 
 -- --------------------------------------------------------
 
@@ -73,7 +78,9 @@ INSERT INTO `customers` (`customer_id`, `name`, `surname`, `country`) VALUES
 (4, 'Eden', 'Hazard', 'be'),
 (5, 'Axel', 'Witsel', 'be'),
 (6, 'emma', 'jones', 'be'),
-(100, 'emma', 'jones', 'be');
+(100, 'emma', 'jones', 'be'),
+(101, 'amelia', 'doe', 'be'),
+(102, 'audrey', 'miller', 'be');
 
 -- --------------------------------------------------------
 
@@ -124,7 +131,9 @@ INSERT INTO `customers_details` (`customer_id`, `phone_number`, `email`, `passwo
 (7, '', 'eve@gmail.com', '123', '2023-07-25 11:47:57'),
 (8, '', 'olivija@gmail.com', '123', '2023-07-25 12:34:20'),
 (9, '', 'emma@gmail.com', '123', '2023-07-25 12:42:59'),
-(100, '', 'samanta@gmail.com', '123', '2023-07-25 12:44:47');
+(100, '', 'samanta@gmail.com', '123', '2023-07-25 12:44:47'),
+(101, '', 'amelia@gmail.com', 'password123', '2023-07-26 17:09:01'),
+(102, '', 'audrey@gmail.com', 'password123', '2023-07-26 17:14:14');
 
 -- --------------------------------------------------------
 
@@ -213,13 +222,13 @@ ALTER TABLE `customer_addresses`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `customers_cars`
@@ -231,7 +240,7 @@ ALTER TABLE `customers_cars`
 -- AUTO_INCREMENT for table `customers_details`
 --
 ALTER TABLE `customers_details`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
